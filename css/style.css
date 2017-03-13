@@ -14,6 +14,7 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
+
 .clear-fix {
   overflow: auto;
 }
@@ -61,6 +62,9 @@ h5 {
 
 }
 
+.noDot{
+  list-style-type: none;
+}
 
 .date-text {
   font-style: italic;
@@ -115,6 +119,7 @@ a {
 .white-text {
   font-weight: bold;
   color: #fff;
+
 }
 
 .gray {
@@ -140,6 +145,11 @@ a {
   justify-content: space-around;
   padding: 10px;
 }
+
+.flex-item{
+  display: inline;
+}
+
 
 .flex-column {
   display: flex;

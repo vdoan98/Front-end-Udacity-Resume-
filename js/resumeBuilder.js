@@ -8,8 +8,9 @@ This is empty on purpose! Your code to build the resume will go here.
    "contact": {
      "phone": "402-613-5540",
      "email": "vdoan98@gmail.com",
-     "location": "Lincoln, Nebraska",
-     "twitter": "vdoan98"
+     "location": "600N 15th St, Lincoln, Nebraska",
+     "twitter": "vdoan98",
+     "github": "vdoan98"
    },
    "welcomemessage": "hello",
    "skills": ["coding", "drawing", "reading"],
@@ -73,6 +74,32 @@ var education = {
   ]
 }
 
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+var formattedNameRole = formattedName + formattedRole;
+var formattedPosition = HTMLworkTitle.replace("%data%", work["position"]);
+var formattedEducation = HTMLschoolName.replace("%data%", education.name);
+var formattedMobile = HTMLmobile.replace("%data%", bio.contact.phone);
+var formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
+var formattedTwitter = HTMLtwitter.replace("%data%", bio.contact.twitter);
+var formattedGithub = HTMLgithub.replace("%data%", bio.contact.github);
+var formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
+var formattedBio = HTMLbioPic.replace("%data%", bio.profile);
+var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomemessage)
+// $("#header").prepend(formattedName);
+// $("#header").prepend(formattedRole);
+$("#header").prepend(formattedNameRole);
+$("#header").append(formattedMobile);
+$("#header").append(formattedEmail);
+$("#header").append(formattedTwitter);
+$("#header").append(formattedPosition);
+$("#header").append(formattedLocation);
+$("#header").append(formattedGithub);
+$("#header").append(formattedWelcome);
+$("#header").append(formattedBio);
+$("#header").append(formattedEducation);
+
+
 function inName(name){
   var nameArray = name.split(" ");
   var firstName = nameArray[0].slice(0,1).toUpperCase() + nameArray[0].slice(1).toLowerCase();
@@ -95,6 +122,8 @@ if(bio.skills.length > 0){
 
 for(job in work.jobs){
   $("#workExperience").append(HTMLworkStart);
+  var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+  $(".work-entry:last").append(formattedDates);
   var formattedJob = HTMLworkTitle.replace("%data%", work.jobs[job].title);
   var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
   var formattedEmployerTitle = formattedJob + formattedEmployer;
@@ -103,8 +132,7 @@ for(job in work.jobs){
   $(".work-entry:last").append(formattedDescription);
   var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
   $(".work-entry:last").append(formattedLocation);
-  var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-  $(".work-entry:last").append(formattedDates);
+
 }
 
 
@@ -119,7 +147,7 @@ projects.display = function(){
     $(".project-entry:last").append(formattedDescription);
     if(projects.projects[project].img.length > 0){
       for(image in projects.projects[project].img){
-        var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].img);
+        var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].img[image]);
         $(".project-entry:last").append(formattedImage);
       }
     }
@@ -153,26 +181,7 @@ for (school in education.onlineCourses){
   $(".education-entry:last").append(formattedUrl);
 }
 
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedPosition = HTMLworkTitle.replace("%data%", work["position"]);
-var formattedEducation = HTMLschoolName.replace("%data%", education.name);
-var formattedMobile = HTMLmobile.replace("%data%", bio.contact.phone);
-var formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
-var formattedTwitter = HTMLtwitter.replace("%data%", bio.contact.twitter);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
-var formattedBio = HTMLbioPic.replace("%data%", bio.profile);
-var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomemessage)
-$("#header").prepend(formattedName);
-$("#header").prepend(formattedRole);
-$("#header").append(formattedPosition);
-$("#header").append(formattedEducation);
-$("#header").append(formattedMobile);
-$("#header").append(formattedEmail);
-$("#header").append(formattedTwitter);
-$("#header").append(formattedLocationformattedLocation);
-$("#header").append(formattedBio);
-$("#header").append(formattedWelcome);
+
 $("#mapDiv").append(googleMap);
 
 projects.display();
